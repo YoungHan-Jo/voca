@@ -6,9 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'package:voca/shared/database/tables/sentence_translations.dart';
+import 'package:voca/shared/database/tables/sentences.dart';
+import 'package:voca/shared/database/tables/word_meanings.dart';
+import 'package:voca/shared/database/tables/words.dart';
+
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [])
+@DriftDatabase(tables: [Words, WordMeanings, Sentences, SentenceTranslations])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 

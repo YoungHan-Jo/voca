@@ -1,0 +1,22 @@
+{
+  "name": "voca",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Voca Flutter app",
+  "scripts": {
+    "spellcheck": "cspell . --config .vscode/cspell.json",
+    "prepare": "husky",
+    "format": "fvm dart format --set-exit-if-changed ."
+  },
+  "devDependencies": {
+    "cspell": "^9.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10"
+  },
+  "lint-staged": {
+    "*.dart": [
+      "dart format",
+      "cspell --config .vscode/cspell.json"
+    ]
+  }
+}

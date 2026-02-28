@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+description: 하이브리드 FSD(Feature-Sliced Design) 아키텍처 규칙 및 폴더별 역할 정의
+globs: lib/**/*.dart
+---
+
+# 프로젝트 아키텍처: 하이브리드 FSD (Feature-Sliced Design)
+
+이 프로젝트는 FSD의 계층 구조를 따르며, Riverpod과 Drift DB를 사용하는 하이브리드 방식을 채택합니다. 모든 코드 생성 및 수정은 아래의 레이어 규칙을 엄격히 준수해야 합니다.
+
+## 1. 레이어별 역할 및 의존성 규칙
+
+의존성 방향은 반드시 상위에서 하위로만 흐릅니다: 
+`app` -> `pages` -> `features` -> `entities` -> `shared`
+
+### 📂 lib/app
+- **역할**: 앱의 진입점 및 전역 설정.
+- **포함 내용**: `MaterialApp`, 전역 테마, 라우터 설정, 전역 Provider Observer.
+- **규칙**: 다른 모든 레이어를 참조할 수 있습니다.
+
+### 📂 lib/pages
+- **역할**: 화면(Screen) 단위의 구성.
+- **포함 내용**: 특정 화면의 Scaffold, 여러 Feature 위젯들의 배치 및 조합.
+- **규칙**: 비즈니스 로직을 직접 가지지 않으며, 하위 `features`의 위젯들을 조합하는 역할만 수행합니다.
+
+### 📂 lib/features
+- **역할**: 실제 비즈니스 가치를 제공하는 독립적인 기능 단위.
+- **포함 내용**: 
+  - `provider/`: 기능별 `StateNotifier`, `Notifier`, 전역 상태가 아닌 기능 전용 상태 관리.
+  - `ui/`: 해당 기능에서만 사용되는 특정 위젯.
+- **규칙**: 한 Feature가 다른 Feature를 직접 참조하지 않도록 노력합니다. 공통 기능은 `entities`나 `shared`로 내립니다.
+
+### 📂 lib/entities
+- **역할**: 비즈니스 핵심 객체(데이터)와 그 데이터를 다루는 법.
+- **포함 내용**:
+  - `model/`: 데이터 클래스(Entity, DTO).
+  - `repository/`: Drift DB와 통신하여 데이터를 가져오는 구체적인 클래스.
+  - `provider/`: Repository를 제공하는 전역 Provider.
+- **규칙**: UI 레이어(`features`, `pages`)를 절대로 참조할 수 없습니다.
+
+### 📂 lib/shared
+- **역할**: 앱 전반에 걸쳐 사용되는 인프라 및 공용 부품.
+- **포함 내용**:
+  - `database/`: `AppDatabase` 정의 (Drift).
+  - `ui/`: 범용적으로 쓰이는 공용 위젯 (버튼, 다이얼로그 등).
+  - `utils/`: 공용 유틸리티 (에빙하우스 알고리즘, 파서 등).
+  - `constants/`: 색상, 텍스트 스타일, 상수 값.
+- **규칙**: 프로젝트 내 다른 어떤 레이어도 참조하지 않는 독립적인 모듈이어야 합니다.
+
+## 2. Riverpod 배치 규칙
+- **전역 데이터/DB 인스턴스**: `shared` 또는 `entities`의 `provider/` 폴더.
+- **비즈니스 로직(Notifier/State)**: `features` 내부의 `provider/` 폴더.
+- **UI 갱신**: `pages` 또는 `features/ui`에서 `ref.watch`를 통해 상태 구독.
+
+## 3. 코드 생성 시 주의사항
+- 새로운 파일을 만들 때 반드시 위 규칙에 맞는 위치인지 먼저 검토하십시오.
+- 의존성 역전(하위 레이어가 상위 레이어를 참조)이 발생하는 import는 즉시 보고하고 수정하십시오.

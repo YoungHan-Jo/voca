@@ -1,5 +1,6 @@
 # Miscellaneous
 *.class
+node_modules/
 *.log
 *.pyc
 *.swp

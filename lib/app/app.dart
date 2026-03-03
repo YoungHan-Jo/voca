@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:voca/app/app_database_provider.dart';
+import 'package:voca/shared/database/app_database_provider.dart';
 
 class RootWidget extends ConsumerStatefulWidget {
   const RootWidget({super.key});
@@ -15,7 +15,7 @@ class _RootWidgetState extends ConsumerState<RootWidget> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(appDatabaseProvider).customSelect('SELECT 1').get();
+      ref.read(appDatabaseProvider.future);
     });
   }
 

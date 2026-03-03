@@ -10,6 +10,7 @@ import 'package:voca/shared/database/tables/sentence_translations.dart';
 import 'package:voca/shared/database/tables/sentences.dart';
 import 'package:voca/shared/database/tables/word_meanings.dart';
 import 'package:voca/shared/database/tables/words.dart';
+import 'package:voca/shared/database/seeders/app_database_seeder.dart';
 
 part 'app_database.g.dart';
 
@@ -19,6 +20,16 @@ class AppDatabase extends _$AppDatabase {
 
   @override
   int get schemaVersion => 1;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    // DB파일이 처음 만들어 질 때 한 번 실행됨
+    onCreate: (Migrator m) async {
+      await m.createAll(); // DB 생성
+
+      await AppDatabaseSeeder.runCsvMigrationIfNeeded(this);
+    },
+  );
 }
 
 LazyDatabase _openConnection() {

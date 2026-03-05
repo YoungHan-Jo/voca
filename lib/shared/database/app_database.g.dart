@@ -1369,6 +1369,964 @@ class SentenceTranslationsCompanion
   }
 }
 
+class $CollectionsTable extends Collections
+    with TableInfo<$CollectionsTable, Collection> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CollectionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _categoryMeta = const VerificationMeta(
+    'category',
+  );
+  @override
+  late final GeneratedColumn<String> category = GeneratedColumn<String>(
+    'category',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _curriculumMeta = const VerificationMeta(
+    'curriculum',
+  );
+  @override
+  late final GeneratedColumn<String> curriculum = GeneratedColumn<String>(
+    'curriculum',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _setIndexMeta = const VerificationMeta(
+    'setIndex',
+  );
+  @override
+  late final GeneratedColumn<int> setIndex = GeneratedColumn<int>(
+    'set_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    category,
+    curriculum,
+    setIndex,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'collections';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Collection> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('category')) {
+      context.handle(
+        _categoryMeta,
+        category.isAcceptableOrUnknown(data['category']!, _categoryMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_categoryMeta);
+    }
+    if (data.containsKey('curriculum')) {
+      context.handle(
+        _curriculumMeta,
+        curriculum.isAcceptableOrUnknown(data['curriculum']!, _curriculumMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_curriculumMeta);
+    }
+    if (data.containsKey('set_index')) {
+      context.handle(
+        _setIndexMeta,
+        setIndex.isAcceptableOrUnknown(data['set_index']!, _setIndexMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_setIndexMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Collection map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Collection(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      category: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}category'],
+      )!,
+      curriculum: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}curriculum'],
+      )!,
+      setIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}set_index'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $CollectionsTable createAlias(String alias) {
+    return $CollectionsTable(attachedDatabase, alias);
+  }
+}
+
+class Collection extends DataClass implements Insertable<Collection> {
+  final String id;
+  final String name;
+  final String category;
+  final String curriculum;
+  final int setIndex;
+  final DateTime createdAt;
+  const Collection({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.curriculum,
+    required this.setIndex,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['category'] = Variable<String>(category);
+    map['curriculum'] = Variable<String>(curriculum);
+    map['set_index'] = Variable<int>(setIndex);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  CollectionsCompanion toCompanion(bool nullToAbsent) {
+    return CollectionsCompanion(
+      id: Value(id),
+      name: Value(name),
+      category: Value(category),
+      curriculum: Value(curriculum),
+      setIndex: Value(setIndex),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory Collection.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Collection(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      category: serializer.fromJson<String>(json['category']),
+      curriculum: serializer.fromJson<String>(json['curriculum']),
+      setIndex: serializer.fromJson<int>(json['setIndex']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'category': serializer.toJson<String>(category),
+      'curriculum': serializer.toJson<String>(curriculum),
+      'setIndex': serializer.toJson<int>(setIndex),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  Collection copyWith({
+    String? id,
+    String? name,
+    String? category,
+    String? curriculum,
+    int? setIndex,
+    DateTime? createdAt,
+  }) => Collection(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    category: category ?? this.category,
+    curriculum: curriculum ?? this.curriculum,
+    setIndex: setIndex ?? this.setIndex,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  Collection copyWithCompanion(CollectionsCompanion data) {
+    return Collection(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      category: data.category.present ? data.category.value : this.category,
+      curriculum: data.curriculum.present
+          ? data.curriculum.value
+          : this.curriculum,
+      setIndex: data.setIndex.present ? data.setIndex.value : this.setIndex,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Collection(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('category: $category, ')
+          ..write('curriculum: $curriculum, ')
+          ..write('setIndex: $setIndex, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, name, category, curriculum, setIndex, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Collection &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.category == this.category &&
+          other.curriculum == this.curriculum &&
+          other.setIndex == this.setIndex &&
+          other.createdAt == this.createdAt);
+}
+
+class CollectionsCompanion extends UpdateCompanion<Collection> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String> category;
+  final Value<String> curriculum;
+  final Value<int> setIndex;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const CollectionsCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.category = const Value.absent(),
+    this.curriculum = const Value.absent(),
+    this.setIndex = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CollectionsCompanion.insert({
+    required String id,
+    required String name,
+    required String category,
+    required String curriculum,
+    required int setIndex,
+    required DateTime createdAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name),
+       category = Value(category),
+       curriculum = Value(curriculum),
+       setIndex = Value(setIndex),
+       createdAt = Value(createdAt);
+  static Insertable<Collection> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? category,
+    Expression<String>? curriculum,
+    Expression<int>? setIndex,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (category != null) 'category': category,
+      if (curriculum != null) 'curriculum': curriculum,
+      if (setIndex != null) 'set_index': setIndex,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CollectionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String>? category,
+    Value<String>? curriculum,
+    Value<int>? setIndex,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return CollectionsCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      category: category ?? this.category,
+      curriculum: curriculum ?? this.curriculum,
+      setIndex: setIndex ?? this.setIndex,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (category.present) {
+      map['category'] = Variable<String>(category.value);
+    }
+    if (curriculum.present) {
+      map['curriculum'] = Variable<String>(curriculum.value);
+    }
+    if (setIndex.present) {
+      map['set_index'] = Variable<int>(setIndex.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CollectionsCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('category: $category, ')
+          ..write('curriculum: $curriculum, ')
+          ..write('setIndex: $setIndex, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CollectionItemsTable extends CollectionItems
+    with TableInfo<$CollectionItemsTable, CollectionItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CollectionItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _collectionIdMeta = const VerificationMeta(
+    'collectionId',
+  );
+  @override
+  late final GeneratedColumn<String> collectionId = GeneratedColumn<String>(
+    'collection_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES collections (id)',
+    ),
+  );
+  static const VerificationMeta _wordIdMeta = const VerificationMeta('wordId');
+  @override
+  late final GeneratedColumn<String> wordId = GeneratedColumn<String>(
+    'word_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES words (id)',
+    ),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [collectionId, wordId, sortOrder];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'collection_items';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CollectionItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('collection_id')) {
+      context.handle(
+        _collectionIdMeta,
+        collectionId.isAcceptableOrUnknown(
+          data['collection_id']!,
+          _collectionIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_collectionIdMeta);
+    }
+    if (data.containsKey('word_id')) {
+      context.handle(
+        _wordIdMeta,
+        wordId.isAcceptableOrUnknown(data['word_id']!, _wordIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_wordIdMeta);
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sortOrderMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {collectionId, wordId};
+  @override
+  CollectionItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CollectionItem(
+      collectionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}collection_id'],
+      )!,
+      wordId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}word_id'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $CollectionItemsTable createAlias(String alias) {
+    return $CollectionItemsTable(attachedDatabase, alias);
+  }
+}
+
+class CollectionItem extends DataClass implements Insertable<CollectionItem> {
+  final String collectionId;
+  final String wordId;
+  final int sortOrder;
+  const CollectionItem({
+    required this.collectionId,
+    required this.wordId,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['collection_id'] = Variable<String>(collectionId);
+    map['word_id'] = Variable<String>(wordId);
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  CollectionItemsCompanion toCompanion(bool nullToAbsent) {
+    return CollectionItemsCompanion(
+      collectionId: Value(collectionId),
+      wordId: Value(wordId),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory CollectionItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CollectionItem(
+      collectionId: serializer.fromJson<String>(json['collectionId']),
+      wordId: serializer.fromJson<String>(json['wordId']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'collectionId': serializer.toJson<String>(collectionId),
+      'wordId': serializer.toJson<String>(wordId),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  CollectionItem copyWith({
+    String? collectionId,
+    String? wordId,
+    int? sortOrder,
+  }) => CollectionItem(
+    collectionId: collectionId ?? this.collectionId,
+    wordId: wordId ?? this.wordId,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  CollectionItem copyWithCompanion(CollectionItemsCompanion data) {
+    return CollectionItem(
+      collectionId: data.collectionId.present
+          ? data.collectionId.value
+          : this.collectionId,
+      wordId: data.wordId.present ? data.wordId.value : this.wordId,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CollectionItem(')
+          ..write('collectionId: $collectionId, ')
+          ..write('wordId: $wordId, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(collectionId, wordId, sortOrder);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CollectionItem &&
+          other.collectionId == this.collectionId &&
+          other.wordId == this.wordId &&
+          other.sortOrder == this.sortOrder);
+}
+
+class CollectionItemsCompanion extends UpdateCompanion<CollectionItem> {
+  final Value<String> collectionId;
+  final Value<String> wordId;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const CollectionItemsCompanion({
+    this.collectionId = const Value.absent(),
+    this.wordId = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CollectionItemsCompanion.insert({
+    required String collectionId,
+    required String wordId,
+    required int sortOrder,
+    this.rowid = const Value.absent(),
+  }) : collectionId = Value(collectionId),
+       wordId = Value(wordId),
+       sortOrder = Value(sortOrder);
+  static Insertable<CollectionItem> custom({
+    Expression<String>? collectionId,
+    Expression<String>? wordId,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (collectionId != null) 'collection_id': collectionId,
+      if (wordId != null) 'word_id': wordId,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CollectionItemsCompanion copyWith({
+    Value<String>? collectionId,
+    Value<String>? wordId,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return CollectionItemsCompanion(
+      collectionId: collectionId ?? this.collectionId,
+      wordId: wordId ?? this.wordId,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (collectionId.present) {
+      map['collection_id'] = Variable<String>(collectionId.value);
+    }
+    if (wordId.present) {
+      map['word_id'] = Variable<String>(wordId.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CollectionItemsCompanion(')
+          ..write('collectionId: $collectionId, ')
+          ..write('wordId: $wordId, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $WordStatsTable extends WordStats
+    with TableInfo<$WordStatsTable, WordStat> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WordStatsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _wordIdMeta = const VerificationMeta('wordId');
+  @override
+  late final GeneratedColumn<String> wordId = GeneratedColumn<String>(
+    'word_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES words (id)',
+    ),
+  );
+  static const VerificationMeta _peekCountMeta = const VerificationMeta(
+    'peekCount',
+  );
+  @override
+  late final GeneratedColumn<int> peekCount = GeneratedColumn<int>(
+    'peek_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _lastPeekedAtMeta = const VerificationMeta(
+    'lastPeekedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastPeekedAt = GeneratedColumn<DateTime>(
+    'last_peeked_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [wordId, peekCount, lastPeekedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'word_stats';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<WordStat> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('word_id')) {
+      context.handle(
+        _wordIdMeta,
+        wordId.isAcceptableOrUnknown(data['word_id']!, _wordIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_wordIdMeta);
+    }
+    if (data.containsKey('peek_count')) {
+      context.handle(
+        _peekCountMeta,
+        peekCount.isAcceptableOrUnknown(data['peek_count']!, _peekCountMeta),
+      );
+    }
+    if (data.containsKey('last_peeked_at')) {
+      context.handle(
+        _lastPeekedAtMeta,
+        lastPeekedAt.isAcceptableOrUnknown(
+          data['last_peeked_at']!,
+          _lastPeekedAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_lastPeekedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {wordId};
+  @override
+  WordStat map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return WordStat(
+      wordId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}word_id'],
+      )!,
+      peekCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}peek_count'],
+      )!,
+      lastPeekedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_peeked_at'],
+      )!,
+    );
+  }
+
+  @override
+  $WordStatsTable createAlias(String alias) {
+    return $WordStatsTable(attachedDatabase, alias);
+  }
+}
+
+class WordStat extends DataClass implements Insertable<WordStat> {
+  final String wordId;
+  final int peekCount;
+  final DateTime lastPeekedAt;
+  const WordStat({
+    required this.wordId,
+    required this.peekCount,
+    required this.lastPeekedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['word_id'] = Variable<String>(wordId);
+    map['peek_count'] = Variable<int>(peekCount);
+    map['last_peeked_at'] = Variable<DateTime>(lastPeekedAt);
+    return map;
+  }
+
+  WordStatsCompanion toCompanion(bool nullToAbsent) {
+    return WordStatsCompanion(
+      wordId: Value(wordId),
+      peekCount: Value(peekCount),
+      lastPeekedAt: Value(lastPeekedAt),
+    );
+  }
+
+  factory WordStat.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WordStat(
+      wordId: serializer.fromJson<String>(json['wordId']),
+      peekCount: serializer.fromJson<int>(json['peekCount']),
+      lastPeekedAt: serializer.fromJson<DateTime>(json['lastPeekedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'wordId': serializer.toJson<String>(wordId),
+      'peekCount': serializer.toJson<int>(peekCount),
+      'lastPeekedAt': serializer.toJson<DateTime>(lastPeekedAt),
+    };
+  }
+
+  WordStat copyWith({String? wordId, int? peekCount, DateTime? lastPeekedAt}) =>
+      WordStat(
+        wordId: wordId ?? this.wordId,
+        peekCount: peekCount ?? this.peekCount,
+        lastPeekedAt: lastPeekedAt ?? this.lastPeekedAt,
+      );
+  WordStat copyWithCompanion(WordStatsCompanion data) {
+    return WordStat(
+      wordId: data.wordId.present ? data.wordId.value : this.wordId,
+      peekCount: data.peekCount.present ? data.peekCount.value : this.peekCount,
+      lastPeekedAt: data.lastPeekedAt.present
+          ? data.lastPeekedAt.value
+          : this.lastPeekedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WordStat(')
+          ..write('wordId: $wordId, ')
+          ..write('peekCount: $peekCount, ')
+          ..write('lastPeekedAt: $lastPeekedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(wordId, peekCount, lastPeekedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is WordStat &&
+          other.wordId == this.wordId &&
+          other.peekCount == this.peekCount &&
+          other.lastPeekedAt == this.lastPeekedAt);
+}
+
+class WordStatsCompanion extends UpdateCompanion<WordStat> {
+  final Value<String> wordId;
+  final Value<int> peekCount;
+  final Value<DateTime> lastPeekedAt;
+  final Value<int> rowid;
+  const WordStatsCompanion({
+    this.wordId = const Value.absent(),
+    this.peekCount = const Value.absent(),
+    this.lastPeekedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  WordStatsCompanion.insert({
+    required String wordId,
+    this.peekCount = const Value.absent(),
+    required DateTime lastPeekedAt,
+    this.rowid = const Value.absent(),
+  }) : wordId = Value(wordId),
+       lastPeekedAt = Value(lastPeekedAt);
+  static Insertable<WordStat> custom({
+    Expression<String>? wordId,
+    Expression<int>? peekCount,
+    Expression<DateTime>? lastPeekedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (wordId != null) 'word_id': wordId,
+      if (peekCount != null) 'peek_count': peekCount,
+      if (lastPeekedAt != null) 'last_peeked_at': lastPeekedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  WordStatsCompanion copyWith({
+    Value<String>? wordId,
+    Value<int>? peekCount,
+    Value<DateTime>? lastPeekedAt,
+    Value<int>? rowid,
+  }) {
+    return WordStatsCompanion(
+      wordId: wordId ?? this.wordId,
+      peekCount: peekCount ?? this.peekCount,
+      lastPeekedAt: lastPeekedAt ?? this.lastPeekedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (wordId.present) {
+      map['word_id'] = Variable<String>(wordId.value);
+    }
+    if (peekCount.present) {
+      map['peek_count'] = Variable<int>(peekCount.value);
+    }
+    if (lastPeekedAt.present) {
+      map['last_peeked_at'] = Variable<DateTime>(lastPeekedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WordStatsCompanion(')
+          ..write('wordId: $wordId, ')
+          ..write('peekCount: $peekCount, ')
+          ..write('lastPeekedAt: $lastPeekedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -1377,6 +2335,11 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $SentencesTable sentences = $SentencesTable(this);
   late final $SentenceTranslationsTable sentenceTranslations =
       $SentenceTranslationsTable(this);
+  late final $CollectionsTable collections = $CollectionsTable(this);
+  late final $CollectionItemsTable collectionItems = $CollectionItemsTable(
+    this,
+  );
+  late final $WordStatsTable wordStats = $WordStatsTable(this);
   late final Index idxWordMeaningsLang = Index(
     'idx_word_meanings_lang',
     'CREATE INDEX idx_word_meanings_lang ON word_meanings (lang)',
@@ -1394,6 +2357,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     wordMeanings,
     sentences,
     sentenceTranslations,
+    collections,
+    collectionItems,
+    wordStats,
     idxWordMeaningsLang,
     idxSentenceTranslationsLang,
   ];
@@ -1459,6 +2425,44 @@ final class $$WordsTableReferences
     ).filter((f) => f.wordId.id.sqlEquals($_itemColumn<String>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_sentencesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$CollectionItemsTable, List<CollectionItem>>
+  _collectionItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.collectionItems,
+    aliasName: $_aliasNameGenerator(db.words.id, db.collectionItems.wordId),
+  );
+
+  $$CollectionItemsTableProcessedTableManager get collectionItemsRefs {
+    final manager = $$CollectionItemsTableTableManager(
+      $_db,
+      $_db.collectionItems,
+    ).filter((f) => f.wordId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _collectionItemsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$WordStatsTable, List<WordStat>>
+  _wordStatsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.wordStats,
+    aliasName: $_aliasNameGenerator(db.words.id, db.wordStats.wordId),
+  );
+
+  $$WordStatsTableProcessedTableManager get wordStatsRefs {
+    final manager = $$WordStatsTableTableManager(
+      $_db,
+      $_db.wordStats,
+    ).filter((f) => f.wordId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_wordStatsRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -1554,6 +2558,56 @@ class $$WordsTableFilterComposer extends Composer<_$AppDatabase, $WordsTable> {
           }) => $$SentencesTableFilterComposer(
             $db: $db,
             $table: $db.sentences,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> collectionItemsRefs(
+    Expression<bool> Function($$CollectionItemsTableFilterComposer f) f,
+  ) {
+    final $$CollectionItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.collectionItems,
+      getReferencedColumn: (t) => t.wordId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.collectionItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> wordStatsRefs(
+    Expression<bool> Function($$WordStatsTableFilterComposer f) f,
+  ) {
+    final $$WordStatsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.wordStats,
+      getReferencedColumn: (t) => t.wordId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordStatsTableFilterComposer(
+            $db: $db,
+            $table: $db.wordStats,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -1698,6 +2752,56 @@ class $$WordsTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> collectionItemsRefs<T extends Object>(
+    Expression<T> Function($$CollectionItemsTableAnnotationComposer a) f,
+  ) {
+    final $$CollectionItemsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.collectionItems,
+      getReferencedColumn: (t) => t.wordId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionItemsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.collectionItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> wordStatsRefs<T extends Object>(
+    Expression<T> Function($$WordStatsTableAnnotationComposer a) f,
+  ) {
+    final $$WordStatsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.wordStats,
+      getReferencedColumn: (t) => t.wordId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordStatsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.wordStats,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$WordsTableTableManager
@@ -1713,7 +2817,12 @@ class $$WordsTableTableManager
           $$WordsTableUpdateCompanionBuilder,
           (Word, $$WordsTableReferences),
           Word,
-          PrefetchHooks Function({bool wordMeaningsRefs, bool sentencesRefs})
+          PrefetchHooks Function({
+            bool wordMeaningsRefs,
+            bool sentencesRefs,
+            bool collectionItemsRefs,
+            bool wordStatsRefs,
+          })
         > {
   $$WordsTableTableManager(_$AppDatabase db, $WordsTable table)
     : super(
@@ -1777,12 +2886,19 @@ class $$WordsTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({wordMeaningsRefs = false, sentencesRefs = false}) {
+              ({
+                wordMeaningsRefs = false,
+                sentencesRefs = false,
+                collectionItemsRefs = false,
+                wordStatsRefs = false,
+              }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
                     if (wordMeaningsRefs) db.wordMeanings,
                     if (sentencesRefs) db.sentences,
+                    if (collectionItemsRefs) db.collectionItems,
+                    if (wordStatsRefs) db.wordStats,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -1825,6 +2941,44 @@ class $$WordsTableTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (collectionItemsRefs)
+                        await $_getPrefetchedData<
+                          Word,
+                          $WordsTable,
+                          CollectionItem
+                        >(
+                          currentTable: table,
+                          referencedTable: $$WordsTableReferences
+                              ._collectionItemsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$WordsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).collectionItemsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.wordId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (wordStatsRefs)
+                        await $_getPrefetchedData<Word, $WordsTable, WordStat>(
+                          currentTable: table,
+                          referencedTable: $$WordsTableReferences
+                              ._wordStatsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$WordsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).wordStatsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.wordId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -1845,7 +2999,12 @@ typedef $$WordsTableProcessedTableManager =
       $$WordsTableUpdateCompanionBuilder,
       (Word, $$WordsTableReferences),
       Word,
-      PrefetchHooks Function({bool wordMeaningsRefs, bool sentencesRefs})
+      PrefetchHooks Function({
+        bool wordMeaningsRefs,
+        bool sentencesRefs,
+        bool collectionItemsRefs,
+        bool wordStatsRefs,
+      })
     >;
 typedef $$WordMeaningsTableCreateCompanionBuilder =
     WordMeaningsCompanion Function({
@@ -2835,6 +3994,1001 @@ typedef $$SentenceTranslationsTableProcessedTableManager =
       SentenceTranslation,
       PrefetchHooks Function({bool sentenceId})
     >;
+typedef $$CollectionsTableCreateCompanionBuilder =
+    CollectionsCompanion Function({
+      required String id,
+      required String name,
+      required String category,
+      required String curriculum,
+      required int setIndex,
+      required DateTime createdAt,
+      Value<int> rowid,
+    });
+typedef $$CollectionsTableUpdateCompanionBuilder =
+    CollectionsCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<String> category,
+      Value<String> curriculum,
+      Value<int> setIndex,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+final class $$CollectionsTableReferences
+    extends BaseReferences<_$AppDatabase, $CollectionsTable, Collection> {
+  $$CollectionsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$CollectionItemsTable, List<CollectionItem>>
+  _collectionItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.collectionItems,
+    aliasName: $_aliasNameGenerator(
+      db.collections.id,
+      db.collectionItems.collectionId,
+    ),
+  );
+
+  $$CollectionItemsTableProcessedTableManager get collectionItemsRefs {
+    final manager = $$CollectionItemsTableTableManager(
+      $_db,
+      $_db.collectionItems,
+    ).filter((f) => f.collectionId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _collectionItemsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$CollectionsTableFilterComposer
+    extends Composer<_$AppDatabase, $CollectionsTable> {
+  $$CollectionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get curriculum => $composableBuilder(
+    column: $table.curriculum,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get setIndex => $composableBuilder(
+    column: $table.setIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> collectionItemsRefs(
+    Expression<bool> Function($$CollectionItemsTableFilterComposer f) f,
+  ) {
+    final $$CollectionItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.collectionItems,
+      getReferencedColumn: (t) => t.collectionId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.collectionItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$CollectionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $CollectionsTable> {
+  $$CollectionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get curriculum => $composableBuilder(
+    column: $table.curriculum,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get setIndex => $composableBuilder(
+    column: $table.setIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CollectionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CollectionsTable> {
+  $$CollectionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get category =>
+      $composableBuilder(column: $table.category, builder: (column) => column);
+
+  GeneratedColumn<String> get curriculum => $composableBuilder(
+    column: $table.curriculum,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get setIndex =>
+      $composableBuilder(column: $table.setIndex, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  Expression<T> collectionItemsRefs<T extends Object>(
+    Expression<T> Function($$CollectionItemsTableAnnotationComposer a) f,
+  ) {
+    final $$CollectionItemsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.collectionItems,
+      getReferencedColumn: (t) => t.collectionId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionItemsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.collectionItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$CollectionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CollectionsTable,
+          Collection,
+          $$CollectionsTableFilterComposer,
+          $$CollectionsTableOrderingComposer,
+          $$CollectionsTableAnnotationComposer,
+          $$CollectionsTableCreateCompanionBuilder,
+          $$CollectionsTableUpdateCompanionBuilder,
+          (Collection, $$CollectionsTableReferences),
+          Collection,
+          PrefetchHooks Function({bool collectionItemsRefs})
+        > {
+  $$CollectionsTableTableManager(_$AppDatabase db, $CollectionsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CollectionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CollectionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CollectionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> category = const Value.absent(),
+                Value<String> curriculum = const Value.absent(),
+                Value<int> setIndex = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CollectionsCompanion(
+                id: id,
+                name: name,
+                category: category,
+                curriculum: curriculum,
+                setIndex: setIndex,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                required String category,
+                required String curriculum,
+                required int setIndex,
+                required DateTime createdAt,
+                Value<int> rowid = const Value.absent(),
+              }) => CollectionsCompanion.insert(
+                id: id,
+                name: name,
+                category: category,
+                curriculum: curriculum,
+                setIndex: setIndex,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$CollectionsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({collectionItemsRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [
+                if (collectionItemsRefs) db.collectionItems,
+              ],
+              addJoins: null,
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (collectionItemsRefs)
+                    await $_getPrefetchedData<
+                      Collection,
+                      $CollectionsTable,
+                      CollectionItem
+                    >(
+                      currentTable: table,
+                      referencedTable: $$CollectionsTableReferences
+                          ._collectionItemsRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$CollectionsTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).collectionItemsRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where(
+                            (e) => e.collectionId == item.id,
+                          ),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$CollectionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CollectionsTable,
+      Collection,
+      $$CollectionsTableFilterComposer,
+      $$CollectionsTableOrderingComposer,
+      $$CollectionsTableAnnotationComposer,
+      $$CollectionsTableCreateCompanionBuilder,
+      $$CollectionsTableUpdateCompanionBuilder,
+      (Collection, $$CollectionsTableReferences),
+      Collection,
+      PrefetchHooks Function({bool collectionItemsRefs})
+    >;
+typedef $$CollectionItemsTableCreateCompanionBuilder =
+    CollectionItemsCompanion Function({
+      required String collectionId,
+      required String wordId,
+      required int sortOrder,
+      Value<int> rowid,
+    });
+typedef $$CollectionItemsTableUpdateCompanionBuilder =
+    CollectionItemsCompanion Function({
+      Value<String> collectionId,
+      Value<String> wordId,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+
+final class $$CollectionItemsTableReferences
+    extends
+        BaseReferences<_$AppDatabase, $CollectionItemsTable, CollectionItem> {
+  $$CollectionItemsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $CollectionsTable _collectionIdTable(_$AppDatabase db) =>
+      db.collections.createAlias(
+        $_aliasNameGenerator(
+          db.collectionItems.collectionId,
+          db.collections.id,
+        ),
+      );
+
+  $$CollectionsTableProcessedTableManager get collectionId {
+    final $_column = $_itemColumn<String>('collection_id')!;
+
+    final manager = $$CollectionsTableTableManager(
+      $_db,
+      $_db.collections,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_collectionIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $WordsTable _wordIdTable(_$AppDatabase db) => db.words.createAlias(
+    $_aliasNameGenerator(db.collectionItems.wordId, db.words.id),
+  );
+
+  $$WordsTableProcessedTableManager get wordId {
+    final $_column = $_itemColumn<String>('word_id')!;
+
+    final manager = $$WordsTableTableManager(
+      $_db,
+      $_db.words,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_wordIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$CollectionItemsTableFilterComposer
+    extends Composer<_$AppDatabase, $CollectionItemsTable> {
+  $$CollectionItemsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$CollectionsTableFilterComposer get collectionId {
+    final $$CollectionsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.collectionId,
+      referencedTable: $db.collections,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionsTableFilterComposer(
+            $db: $db,
+            $table: $db.collections,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$WordsTableFilterComposer get wordId {
+    final $$WordsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableFilterComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CollectionItemsTableOrderingComposer
+    extends Composer<_$AppDatabase, $CollectionItemsTable> {
+  $$CollectionItemsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$CollectionsTableOrderingComposer get collectionId {
+    final $$CollectionsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.collectionId,
+      referencedTable: $db.collections,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionsTableOrderingComposer(
+            $db: $db,
+            $table: $db.collections,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$WordsTableOrderingComposer get wordId {
+    final $$WordsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableOrderingComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CollectionItemsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CollectionItemsTable> {
+  $$CollectionItemsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  $$CollectionsTableAnnotationComposer get collectionId {
+    final $$CollectionsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.collectionId,
+      referencedTable: $db.collections,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CollectionsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.collections,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$WordsTableAnnotationComposer get wordId {
+    final $$WordsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CollectionItemsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CollectionItemsTable,
+          CollectionItem,
+          $$CollectionItemsTableFilterComposer,
+          $$CollectionItemsTableOrderingComposer,
+          $$CollectionItemsTableAnnotationComposer,
+          $$CollectionItemsTableCreateCompanionBuilder,
+          $$CollectionItemsTableUpdateCompanionBuilder,
+          (CollectionItem, $$CollectionItemsTableReferences),
+          CollectionItem,
+          PrefetchHooks Function({bool collectionId, bool wordId})
+        > {
+  $$CollectionItemsTableTableManager(
+    _$AppDatabase db,
+    $CollectionItemsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CollectionItemsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CollectionItemsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CollectionItemsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> collectionId = const Value.absent(),
+                Value<String> wordId = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CollectionItemsCompanion(
+                collectionId: collectionId,
+                wordId: wordId,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String collectionId,
+                required String wordId,
+                required int sortOrder,
+                Value<int> rowid = const Value.absent(),
+              }) => CollectionItemsCompanion.insert(
+                collectionId: collectionId,
+                wordId: wordId,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$CollectionItemsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({collectionId = false, wordId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (collectionId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.collectionId,
+                                referencedTable:
+                                    $$CollectionItemsTableReferences
+                                        ._collectionIdTable(db),
+                                referencedColumn:
+                                    $$CollectionItemsTableReferences
+                                        ._collectionIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+                    if (wordId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.wordId,
+                                referencedTable:
+                                    $$CollectionItemsTableReferences
+                                        ._wordIdTable(db),
+                                referencedColumn:
+                                    $$CollectionItemsTableReferences
+                                        ._wordIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$CollectionItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CollectionItemsTable,
+      CollectionItem,
+      $$CollectionItemsTableFilterComposer,
+      $$CollectionItemsTableOrderingComposer,
+      $$CollectionItemsTableAnnotationComposer,
+      $$CollectionItemsTableCreateCompanionBuilder,
+      $$CollectionItemsTableUpdateCompanionBuilder,
+      (CollectionItem, $$CollectionItemsTableReferences),
+      CollectionItem,
+      PrefetchHooks Function({bool collectionId, bool wordId})
+    >;
+typedef $$WordStatsTableCreateCompanionBuilder =
+    WordStatsCompanion Function({
+      required String wordId,
+      Value<int> peekCount,
+      required DateTime lastPeekedAt,
+      Value<int> rowid,
+    });
+typedef $$WordStatsTableUpdateCompanionBuilder =
+    WordStatsCompanion Function({
+      Value<String> wordId,
+      Value<int> peekCount,
+      Value<DateTime> lastPeekedAt,
+      Value<int> rowid,
+    });
+
+final class $$WordStatsTableReferences
+    extends BaseReferences<_$AppDatabase, $WordStatsTable, WordStat> {
+  $$WordStatsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $WordsTable _wordIdTable(_$AppDatabase db) => db.words.createAlias(
+    $_aliasNameGenerator(db.wordStats.wordId, db.words.id),
+  );
+
+  $$WordsTableProcessedTableManager get wordId {
+    final $_column = $_itemColumn<String>('word_id')!;
+
+    final manager = $$WordsTableTableManager(
+      $_db,
+      $_db.words,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_wordIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$WordStatsTableFilterComposer
+    extends Composer<_$AppDatabase, $WordStatsTable> {
+  $$WordStatsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get peekCount => $composableBuilder(
+    column: $table.peekCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get lastPeekedAt => $composableBuilder(
+    column: $table.lastPeekedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$WordsTableFilterComposer get wordId {
+    final $$WordsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableFilterComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$WordStatsTableOrderingComposer
+    extends Composer<_$AppDatabase, $WordStatsTable> {
+  $$WordStatsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get peekCount => $composableBuilder(
+    column: $table.peekCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get lastPeekedAt => $composableBuilder(
+    column: $table.lastPeekedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$WordsTableOrderingComposer get wordId {
+    final $$WordsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableOrderingComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$WordStatsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $WordStatsTable> {
+  $$WordStatsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get peekCount =>
+      $composableBuilder(column: $table.peekCount, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get lastPeekedAt => $composableBuilder(
+    column: $table.lastPeekedAt,
+    builder: (column) => column,
+  );
+
+  $$WordsTableAnnotationComposer get wordId {
+    final $$WordsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.wordId,
+      referencedTable: $db.words,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$WordsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.words,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$WordStatsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $WordStatsTable,
+          WordStat,
+          $$WordStatsTableFilterComposer,
+          $$WordStatsTableOrderingComposer,
+          $$WordStatsTableAnnotationComposer,
+          $$WordStatsTableCreateCompanionBuilder,
+          $$WordStatsTableUpdateCompanionBuilder,
+          (WordStat, $$WordStatsTableReferences),
+          WordStat,
+          PrefetchHooks Function({bool wordId})
+        > {
+  $$WordStatsTableTableManager(_$AppDatabase db, $WordStatsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$WordStatsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$WordStatsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$WordStatsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> wordId = const Value.absent(),
+                Value<int> peekCount = const Value.absent(),
+                Value<DateTime> lastPeekedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => WordStatsCompanion(
+                wordId: wordId,
+                peekCount: peekCount,
+                lastPeekedAt: lastPeekedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String wordId,
+                Value<int> peekCount = const Value.absent(),
+                required DateTime lastPeekedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => WordStatsCompanion.insert(
+                wordId: wordId,
+                peekCount: peekCount,
+                lastPeekedAt: lastPeekedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$WordStatsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({wordId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (wordId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.wordId,
+                                referencedTable: $$WordStatsTableReferences
+                                    ._wordIdTable(db),
+                                referencedColumn: $$WordStatsTableReferences
+                                    ._wordIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$WordStatsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $WordStatsTable,
+      WordStat,
+      $$WordStatsTableFilterComposer,
+      $$WordStatsTableOrderingComposer,
+      $$WordStatsTableAnnotationComposer,
+      $$WordStatsTableCreateCompanionBuilder,
+      $$WordStatsTableUpdateCompanionBuilder,
+      (WordStat, $$WordStatsTableReferences),
+      WordStat,
+      PrefetchHooks Function({bool wordId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -2847,4 +5001,10 @@ class $AppDatabaseManager {
       $$SentencesTableTableManager(_db, _db.sentences);
   $$SentenceTranslationsTableTableManager get sentenceTranslations =>
       $$SentenceTranslationsTableTableManager(_db, _db.sentenceTranslations);
+  $$CollectionsTableTableManager get collections =>
+      $$CollectionsTableTableManager(_db, _db.collections);
+  $$CollectionItemsTableTableManager get collectionItems =>
+      $$CollectionItemsTableTableManager(_db, _db.collectionItems);
+  $$WordStatsTableTableManager get wordStats =>
+      $$WordStatsTableTableManager(_db, _db.wordStats);
 }

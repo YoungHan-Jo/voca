@@ -6,15 +6,28 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'package:voca/shared/database/tables/collection_items.dart';
+import 'package:voca/shared/database/tables/collections.dart';
 import 'package:voca/shared/database/tables/sentence_translations.dart';
 import 'package:voca/shared/database/tables/sentences.dart';
 import 'package:voca/shared/database/tables/word_meanings.dart';
+import 'package:voca/shared/database/tables/word_stats.dart';
 import 'package:voca/shared/database/tables/words.dart';
 import 'package:voca/shared/database/seeders/app_database_seeder.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [Words, WordMeanings, Sentences, SentenceTranslations])
+@DriftDatabase(
+  tables: [
+    Words,
+    WordMeanings,
+    Sentences,
+    SentenceTranslations,
+    Collections,
+    CollectionItems,
+    WordStats,
+  ],
+)
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 

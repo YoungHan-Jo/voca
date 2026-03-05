@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:voca/app/view/main_screen.dart';
 import 'package:voca/shared/database/app_database_provider.dart';
 
 class RootWidget extends ConsumerStatefulWidget {
@@ -26,7 +27,7 @@ class _RootWidgetState extends ConsumerState<RootWidget> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Scaffold(body: Center(child: Text('Voca'))),
+      home: const MainScreen(),
     );
   }
 }
